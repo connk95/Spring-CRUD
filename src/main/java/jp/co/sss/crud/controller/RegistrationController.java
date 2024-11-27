@@ -47,6 +47,9 @@ public class RegistrationController {
 		} else {
 			Employee checkEmployee = new Employee();
 			BeanUtils.copyProperties(form, checkEmployee);
+			if (checkEmployee.getAuthority() != 1) {
+				checkEmployee.setAuthority(2);
+			}
 			Department department = departmentRepository.findById(form.getDeptId()).orElse(null);
 			checkEmployee.setDepartment(department);
 			model.addAttribute("EmployeeForm", form);
@@ -60,7 +63,6 @@ public class RegistrationController {
 		if (result.hasErrors()) {
 			model.addAttribute("EmployeeForm", form);
 	        model.addAttribute("org.springframework.validation.BindingResult.EmployeeForm", result);
-			result.getAllErrors().forEach(error -> System.out.println(error.getDefaultMessage()));
 			return "regist/regist_input";
 		} else {
 			model.addAttribute("user", session.getAttribute("user"));

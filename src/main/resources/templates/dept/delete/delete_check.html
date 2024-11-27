@@ -9,8 +9,12 @@
 <body class="admin user_delete_check_admin">
 	<h3>部署削除確認画面</h3>
 	<!-- class名とボタンの変更は行なわないこと。-->
+	<p th:if="${errorMessage != null}">
+		<span th:text="${errorMessage}"></span>
+	</p>
 	<div class="update">
 		<div class="form">
+
 			<div class="label">部署名：</div>
 			<div class="input" th:text="${checkDepartment.deptName}"></div>
 		</div>
@@ -18,7 +22,7 @@
 			<div class="form">
 				<div class="label"></div>
 				<div class="input">
-					<input type="hidden" name="deptId" th:value="*{deptId}" th:object="${DepartmentForm}"/>
+					<input type="hidden" name="deptId" th:value="*{deptId}" th:object="${DepartmentForm}" />
 					<input type="submit" value="削除" />
 				</div>
 			</div>

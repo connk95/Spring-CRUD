@@ -19,5 +19,4 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 	
 	@Query("SELECT e FROM Employee e JOIN FETCH e.department WHERE e.department.deptId = :deptId")
 	List<Employee> findAllByDeptId(Integer deptId);
-
 }

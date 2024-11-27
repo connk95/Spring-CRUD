@@ -66,7 +66,6 @@ public class UpdateController {
 		if (result.hasErrors()) {
 			model.addAttribute("EmployeeForm", form);
 			model.addAttribute("org.springframework.validation.BindingResult.EmployeeForm", result);
-			result.getAllErrors().forEach(error -> System.out.println(error.getDefaultMessage()));
 			return "update/update_input";
 		} else {
 			model.addAttribute("user", session.getAttribute("user"));

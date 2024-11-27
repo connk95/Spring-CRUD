@@ -70,7 +70,7 @@
 			<td th:if="${user.authority==2}" th:text="${#dates.format(employee.birthday, 'yyyy/MM/dd')}"></td>
 			<td th:if="${employee.authority==1 and user.authority==2}">一般</td>
 			<td th:if="${employee.authority==2 and user.authority==2}">管理者</td>
-			<td th:text="${employee.department.deptName}"></td>
+			<td th:text="${employee.department.deptName ?: '無'}"></td>
 			<td th:if="${user.authority==2 or user.empId==employee.empId}">
 				<form th:action="@{/update/input}" method="get">
 					<input type="hidden" name="empId" th:value="${employee.empId}" />
