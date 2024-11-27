@@ -61,9 +61,8 @@
 				<div class="label">部署名：</div>
 				<div class="input">
 					<select th:field="*{deptId}">
-						<option value="1">営業部</option>
-						<option value="2">経理部</option>
-						<option value="3">総務部</option>
+						<option th:each="department : ${departments}" th:value="${department.deptId}"
+							th:text="${department.deptName}"></option>
 					</select>
 				</div>
 			</div>

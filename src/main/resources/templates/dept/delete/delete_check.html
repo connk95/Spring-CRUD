@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{common/layout_4block :: layout(~{::body/content()})}">
+
+<head>
+	<meta charset="UTF-8">
+	<title>部署削除確認 | 社員管理システム</title>
+</head>
+
+<body class="admin user_delete_check_admin">
+	<h3>部署削除確認画面</h3>
+	<!-- class名とボタンの変更は行なわないこと。-->
+	<div class="update">
+		<div class="form">
+			<div class="label">部署名：</div>
+			<div class="input" th:text="${checkDepartment.deptName}"></div>
+		</div>
+		<form th:action="@{/dept/delete/complete}" method="post">
+			<div class="form">
+				<div class="label"></div>
+				<div class="input">
+					<input type="hidden" name="deptId" th:value="*{deptId}" th:object="${DepartmentForm}"/>
+					<input type="submit" value="削除" />
+				</div>
+			</div>
+		</form>
+		<form th:action="@{/dept/list}">
+			<div class="form">
+				<div class="label"></div>
+				<div class="input">
+					<input type="submit" value="戻る" />
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+
+</html>

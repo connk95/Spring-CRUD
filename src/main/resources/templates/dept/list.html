@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{common/layout_4block :: layout(~{::body/content()})}">
+
+<head>
+	<title>部署一覧 | 社員管理システム</title>
+	<meta charset="UTF-8" />
+</head>
+
+<body class="admin user_list">
+	<h3>部署一覧画面</h3>
+	<th:block th:if="${user.authority==2}">
+		<div class="regist_link">
+			<form th:action="@{/dept/regist/input}">
+				<input type="submit" value="新規部署登録" />
+			</form>
+			<form th:action="@{/list}">
+				<input type="submit" value="社員一覧画面" />
+			</form>
+		</div>
+	</th:block>
+	<th:block th:if="${#lists.isEmpty(departments)}">
+		<div class="message">
+			<p>該当する部署は存在しません。</p>
+			<p class="back_to_top_message"><a th:href="@{/dept/list}">一覧表示に戻る</a></p>
+		</div>
+	</th:block>
+	<table class="list_table" th:if="${departments != null and #lists.size(departments) > 0}">
+		<tr>
+			<th>部署ID</th>
+			<th>部署名</th>
+			<th:block th:if="true">
+				<th class="modify" colspan="2">操作</th>
+			</th:block>
+		</tr>
+		<tr th:each="department: ${departments}">
+			<td th:text="${department.deptId}"></td>
+			<td th:text="${department.deptName}"></td>
+			<td th:if="${user.authority==2 or user.empId==employee.empId}">
+				<form th:action="@{/dept/update/input}" method="get">
+					<input type="hidden" name="deptId" th:value="${department.deptId}" />
+					<input type="submit" value="変更" />
+				</form>
+			</td>
+			<td th:if="${user.authority==2}">
+				<form th:action="@{/dept/delete/check}" method="get">
+					<input type="hidden" name="deptId" th:value="*{department.deptId}" />
+					<input type="submit" value="削除" />
+				</form>
+			</td>
+		</tr>
+	</table>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{common/layout_4block :: layout(~{::body/content()})}">
+
+<head>
+	<meta charset="UTF-8">
+	<title>社員変更確認 | 社員管理システム</title>
+</head>
+
+<body class="admin user_update_check_admin">
+	<h3>部署変更確認画面</h3>
+	<!-- class名とボタンの変更は行なわないこと。-->
+	<div class="update">
+		<div class="form">
+			<div class="label">部署名：</div>
+			<div class="input" th:text="${checkDepartment.deptName}"></div>
+		</div>
+		<form th:action="@{/dept/update/complete}" method="post" th:object="${DepartmentForm}">
+			<div class="form">
+				<div class="label"></div>
+				<div class="input">
+					<input type="hidden" th:field="*{deptId}" />
+					<input type="hidden" th:field="*{deptName}" />
+					<input type="submit" value="変更" />
+				</div>
+			</div>
+		</form>
+		<form th:action="@{/dept/update/input}" method="post" th:object="${DepartmentForm}">
+			<div class="form">
+				<div class="label"></div>
+				<div class="input">
+					<input type="hidden" th:field="*{deptId}" />
+					<input type="hidden" th:field="*{deptName}" />
+					<input type="submit" value="戻る" />
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+
+</html>

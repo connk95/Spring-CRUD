@@ -37,6 +37,7 @@ public class UpdateController {
 		EmployeeForm form = new EmployeeForm();
 		BeanUtils.copyProperties(updateEmployee, form);
 		model.addAttribute("EmployeeForm", form);
+		model.addAttribute("departments", departmentRepository.findAll());
 		return "update/update_input";
 	}
 
@@ -45,8 +46,7 @@ public class UpdateController {
 		if (result.hasErrors()) {
 			model.addAttribute("EmployeeForm", form);
 			model.addAttribute("org.springframework.validation.BindingResult.EmployeeForm", result);
-			result.getAllErrors().forEach(error -> System.out.println(error.getDefaultMessage()));
-			return "regist/regist_input";
+			return "update/update_input";
 		} else {
 			Employee checkEmployee = new Employee();
 			BeanUtils.copyProperties(form, checkEmployee);
@@ -67,7 +67,7 @@ public class UpdateController {
 			model.addAttribute("EmployeeForm", form);
 			model.addAttribute("org.springframework.validation.BindingResult.EmployeeForm", result);
 			result.getAllErrors().forEach(error -> System.out.println(error.getDefaultMessage()));
-			return "regist/regist_input";
+			return "update/update_input";
 		} else {
 			model.addAttribute("user", session.getAttribute("user"));
 			Employee checkEmployee = new Employee();

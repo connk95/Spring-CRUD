@@ -27,7 +27,7 @@ public class DeleteController {
 	HttpSession session;
 
 	@GetMapping("/delete/check")
-	public String updateEmployee(@RequestParam Integer empId, Model model) {
+	public String deleteEmployee(@RequestParam Integer empId, Model model) {
 		model.addAttribute("user", session.getAttribute("user"));
 		Employee checkEmployee = employeeRepository.findById(empId).orElse(null);
 		EmployeeForm form = new EmployeeForm();
@@ -39,7 +39,6 @@ public class DeleteController {
 
 	@PostMapping("/delete/complete")
 	public String checkDeleteEmployee(@ModelAttribute EmployeeForm form, Model model) {
-		System.out.println(form.getEmpId());
 		employeeRepository.deleteById(form.getEmpId());
 		return "delete/delete_complete";
 	}

@@ -13,10 +13,16 @@
 	<!-- フィルターの処理により、当該Thymeleaf処理完了後にログイン画面にリダイレクトする。 -->
 	<!-- ***管理者権限表示*** -->
 	<!-- ***trueを書き換えること*** -->
-	<th:block th:if="true">
+	<th:block th:if="${user.authority==2}">
 		<div class="regist_link">
-			<a th:href="@{/regist/input}">新規社員登録</a>
+			<form th:action="@{/regist/input}">
+				<input type="submit" value="新規社員登録" />
+			</form>
+			<form th:action="@{/dept/list}">
+				<input type="submit" value="部署一覧画面" />
+			</form>
 		</div>
+
 	</th:block>
 	<!-- ***管理者権限表示 ここまで*** -->
 
@@ -49,8 +55,6 @@
 			</th:block>
 			<th class="deptName">部署名</th>
 			<th:block th:if="true">
-				<!--				<th class="button">変更</th>-->
-				<!--				<th class="button">削除</th>-->
 				<th class="modify" colspan="2">操作</th>
 			</th:block>
 			<!-- ***管理者権限表示 ここまで*** -->

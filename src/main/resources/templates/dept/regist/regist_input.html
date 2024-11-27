@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{common/layout_4block :: layout(~{::body/content()})}">
+
+<head>
+	<title>会員登録入力 | シェアードショップ</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body class="admin user_regist_input_admin">
+	<h3>部署登録入力画面</h3>
+	<div class="update">
+		<form th:action="@{/dept/regist/check}" method="post" th:object="${DepartmentForm}">
+
+			<p>
+				<span th:each="error : ${#fields.detailedErrors()}">
+					<span th:text="${error.message}"></span><br />
+				</span>
+			</p>
+
+			<div class="form">
+				<div class="label">部署名：</div>
+				<div class="input">
+					<input type="text" th:field="*{deptName}" />
+				</div>
+			</div>
+			<div class="form">
+				<div class="label"></div>
+				<div class="input">
+					<input type="submit" value="登録" />
+				</div>
+			</div>
+		</form>
+		<form th:action="@{/dept/list}">
+			<div class="form">
+				<div class="label"></div>
+				<div class="input">
+					<input type="submit" value="戻る" />
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+
+</html>

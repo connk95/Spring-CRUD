@@ -33,6 +33,7 @@ public class RegistrationController {
 	@GetMapping("regist/input")
 	public String registerEmployee(Model model) {
 		model.addAttribute("EmployeeForm", new EmployeeForm());
+		model.addAttribute("departments", departmentRepository.findAll());
 		model.addAttribute("user", session.getAttribute("user"));
 		return "regist/regist_input";
 	}
@@ -42,7 +43,6 @@ public class RegistrationController {
 		if (result.hasErrors()) {
 			model.addAttribute("EmployeeForm", form);
 	        model.addAttribute("org.springframework.validation.BindingResult.EmployeeForm", result);
-			result.getAllErrors().forEach(error -> System.out.println(error.getDefaultMessage()));
 			return "regist/regist_input";
 		} else {
 			Employee checkEmployee = new Employee();

@@ -18,6 +18,12 @@ div.regist_link {
 	padding-right: 35px;
 	padding-bottom: 10px;
 	text-align: right;
+	display: flex;
+    justify-content: flex-end;
+}
+
+div.regist_link > form > input {
+	margin-right: 10px;
 }
 
 /* ---- 社員情報一覧テーブル ---- */
@@ -78,6 +84,7 @@ td.button {
 
 table td {
 	padding-left: 5px;
+	padding-right: 5px;
 }
 
 /* ---- 入力フォーム(検索、登録、変更、削除) ---- */

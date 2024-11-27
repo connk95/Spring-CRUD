@@ -16,27 +16,27 @@ import jp.co.sss.crud.entity.Employee;
 public class LoginCheckFilter extends HttpFilter {
 	@Override
 	public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
-	        throws IOException, ServletException {
-	    String requestURL = request.getRequestURI();
+			throws IOException, ServletException {
+		String requestURL = request.getRequestURI();
 
-	    if (requestURL.startsWith(request.getContextPath() + "/css") || 
-	        requestURL.endsWith("/login") ||
-	        requestURL.equals(request.getContextPath() + "/")) {
-	        chain.doFilter(request, response);
-	        return;
-	    }
+		if (requestURL.startsWith(request.getContextPath() + "/css") ||
+				requestURL.endsWith("/login") ||
+				requestURL.equals(request.getContextPath() + "/")) {
+			chain.doFilter(request, response);
+			return;
+		} else {
 
-	    HttpSession session = request.getSession();
-	    Employee user = (Employee) session.getAttribute("user");
-	    session.setAttribute("user", user);
+			HttpSession session = request.getSession();
+			Employee user = (Employee) session.getAttribute("user");
+			session.setAttribute("user", user);
 
-	    if (user == null) {
-	        response.sendRedirect(request.getContextPath() + "/");
-	        return;
-	    }
+			if (user == null) {
+				response.sendRedirect(request.getContextPath() + "/");
+				return;
+			}
 
-	    chain.doFilter(request, response);
+			chain.doFilter(request, response);
+		}
 	}
-
 
 }
