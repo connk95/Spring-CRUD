@@ -49,7 +49,7 @@ public class ListController {
 	public String showDeptList(Model model) {
 		model.addAttribute("departments", departmentRepository.findAll());
 		model.addAttribute("user", session.getAttribute("user"));
-		return "/dept/list";
+		return "dept/list";
 	}
 
 }
